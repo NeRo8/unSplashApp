@@ -1,15 +1,21 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
-class ImageList extends Component {
-  state = {};
-  render() {
-    return (
-      <View>
-        <Text>Image</Text>
-      </View>
-    );
-  }
-}
+import styles from './styles';
 
-export default ImageList;
+const IconImage = ({ pictures }) => (
+  <View style={styles.container}>
+    <Image
+      resizeMode='cover'
+      source={{ uri: pictures.item.urls.small }}
+      style={styles.image}
+    />
+  </View>
+);
+
+IconImage.propTypes = {
+  pictures: PropTypes.object.isRequired
+};
+
+export default IconImage;

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ActivityIndicator, Button } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+
+import IconImage from '../../components/IconImage';
 
 import { itemsFetchData } from '../../actions/actions';
 
-import style from './styles';
+import styles from './styles';
 
 class HomeScreen extends Component {
   state = {};
@@ -24,7 +26,16 @@ class HomeScreen extends Component {
       );
     }
 
-    return <View />;
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={this.props.items}
+          renderItem={item => <IconImage pictures={item} />}
+          numColumns={3}
+          contentContainerStyle={styles.containerGallery}
+        />
+      </View>
+    );
   }
 }
 
