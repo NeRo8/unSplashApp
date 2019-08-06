@@ -1,21 +1,34 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const IconImage = ({ pictures }) => (
-  <View style={styles.container}>
-    <Image
-      resizeMode='cover'
-      source={{ uri: pictures.item.urls.small }}
-      style={styles.image}
-    />
-  </View>
-);
+class IconImage extends React.Component {
+  render() {
+    const { pictures } = this.props;
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Detail', { item: pictures });
+          }}
+        >
+          <Image
+            resizeMode='cover'
+            source={{ uri: pictures.urls.small }}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
 IconImage.propTypes = {
   pictures: PropTypes.object.isRequired
 };
 
-export default IconImage;
+export default withNavigation(IconImage);

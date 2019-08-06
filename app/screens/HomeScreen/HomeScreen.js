@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+  Text
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import IconImage from '../../components/IconImage';
@@ -14,6 +20,8 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.props.onLoadData();
   }
+
+  renderItemFlatList = item => <IconImage pictures={item} />;
 
   render() {
     const { isLoading } = this.props;
@@ -30,9 +38,9 @@ class HomeScreen extends Component {
       <View style={styles.container}>
         <FlatList
           data={this.props.items}
-          renderItem={item => <IconImage pictures={item} />}
-          numColumns={3}
-          contentContainerStyle={styles.containerGallery}
+          renderItem={({ item }) => this.renderItemFlatList(item)}
+          keyExtractor={(item, index) => item.id}
+          numColumns={2}
         />
       </View>
     );

@@ -5,6 +5,7 @@ export default StyleSheet.create({
     flex: 1
   },
   image: {
-    height: 150
+    height: 150,
+    width: '100%'
   }
 });

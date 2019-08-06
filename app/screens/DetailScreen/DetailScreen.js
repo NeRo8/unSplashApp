@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Image } from 'react-native';
 
-import style from './styles';
+import styles from './styles';
 
 class DetailScreen extends Component {
-  state = {};
   render() {
+    const pictures = this.props.navigation.getParam('item');
     return (
-      <View>
-        <Text>DetailScreen</Text>
+      <View style={styles.container}>
+        <Image
+          // Якщо буде активний параметр contain то фотку розтягне максимально, щоб вона влізла в екран
+          // resizeMode={'contain'}
+          source={{ uri: pictures.urls.full }}
+          style={styles.image}
+        />
       </View>
     );
   }
