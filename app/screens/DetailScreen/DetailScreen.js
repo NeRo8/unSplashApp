@@ -10,7 +10,7 @@ class DetailScreen extends Component {
       <View style={styles.container}>
         <Image
           // Якщо буде активний параметр contain то фотку розтягне максимально, щоб вона влізла в екран
-          // resizeMode={'contain'}
+          resizeMode={'contain'}
           source={{ uri: pictures.urls.full }}
           style={styles.image}
         />
